@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 # @Time: 2020/9/17 15:27
 # @Author: sancica
-# @File: linear_models.py
+# @File: models.py
 # functional description: linear models for sklearn
 
 
@@ -95,7 +95,89 @@ def svmC(data, labels, args):
     return clf
 
 
+def sgd_classifier(data, labels, args):
+    """
+    随机梯度下降分类器
+    """
+    from sklearn.linear_model import SGDClassifier
+    clf = SGDClassifier(**args)
+    clf.fit(data, labels)
+    return clf
+
+
+def sgd_regression(data, labels, args):
+    """
+    随机梯度下降回归
+    """
+    from sklearn.linear_model import SGDRegressor
+    reg = SGDRegressor(**args)
+    reg.fit(data, labels)
+    return reg
+
+
+def nearest_neighbors(data, args):
+    """
+    最近邻
+    """
+    from sklearn.neighbors import NearestNeighbors
+    nbrs = NearestNeighbors(**args)
+    nbrs.fit(data)
+    # 计算测试数据对应的最近邻下标和距离
+    # distances, indices = nbrs.kneighbors(test_data)
+    return nbrs
+
+
+def gaussian_NB(data, labels, args={}):
+    """
+    高斯贝叶斯
+    """
+    from sklearn.naive_bayes import GaussianNB
+    gnb = GaussianNB(**args)
+    gnb.fit(data, labels)
+    return gnb
+
+
+def decision_tree_classifier(data, labels, args={}):
+    """
+    决策树分类器
+    """
+    from sklearn.tree import DecisionTreeClassifier
+    clf = DecisionTreeClassifier(**args)
+    clf.fit(data, labels)
+    return clf
+
+
+def decision_tree_regression(data, labels, args={}):
+    """
+    决策树回归
+    """
+    from sklearn.tree import DecisionTreeRegressor
+    reg = DecisionTreeRegressor(**args)
+    reg.fit(data, labels)
+
+
+def bagging_classifier(clf, args={}):
+    """
+    bagging集成模型
+    """
+    from sklearn.ensemble import BaggingClassifier
+    bagging = BaggingClassifier(clf, **args)
+    return bagging
+
+def random_forest(data, labels, args={}):
+    """
+    随机森林，一种bagging集成模型
+    """
+    from sklearn.ensemble import RandomForestClassifier
+    clf = RandomForestClassifier(**args)
+    clf.fit(data, labels)
+    return clf
+
+
 if __name__ == "__main__":
-    model = linear_regression([[1, 1], [2, 3], [3, 4]], [1, 2, 3], {"fit_intercept": False})
-    print(model.predict([[1, 1]]))
-    print(model.coef_)
+    model = decision_tree_classifier([[1, 1], [2, 3], [3, 4]], [1, 2, 3])
+    from plot_imgs import dt_structure
+
+    dt_structure(model, "pic")
+    # print(model.predict([[1, 1]]))
+    # print(model.coef_)
