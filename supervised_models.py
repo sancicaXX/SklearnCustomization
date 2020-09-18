@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 # @Time: 2020/9/17 15:27
 # @Author: sancica
-# @File: models.py
+# @File: supervised_models.py
 # functional description: linear models for sklearn
 
 
