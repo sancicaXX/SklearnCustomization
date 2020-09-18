@@ -164,6 +164,7 @@ def bagging_classifier(clf, args={}):
     bagging = BaggingClassifier(clf, **args)
     return bagging
 
+
 def random_forest(data, labels, args={}):
     """
     随机森林，一种bagging集成模型
@@ -172,6 +173,68 @@ def random_forest(data, labels, args={}):
     clf = RandomForestClassifier(**args)
     clf.fit(data, labels)
     return clf
+
+
+def adaboost_classifier(data, labels, args={}):
+    """
+    boosting算法：AdaBoost分类
+    """
+    from sklearn.ensemble import AdaBoostClassifier
+    clf = AdaBoostClassifier(**args)
+    clf.fit(data, labels)
+    return clf
+
+
+def adaboost_regressor(data, labels, args={}):
+    """
+    boosting算法：Adaboost回归
+    """
+    from sklearn.ensemble import AdaBoostRegressor
+    reg = AdaBoostRegressor(**args)
+    reg.fit(data, labels)
+    return reg
+
+
+def GBDT_classifier(data, labels, args={}):
+    """
+    boosting算法：GBDT分类
+    """
+    from sklearn.ensemble import GradientBoostingClassifier
+    clf = GradientBoostingClassifier(**args)
+    clf.fit(data, labels)
+    return clf
+
+
+def GBDT_regressor(data, labels, args={}):
+    """
+    boosting算法：GBDT回归
+    """
+    from sklearn.ensemble import GradientBoostingRegressor
+    reg = GradientBoostingRegressor(**args)
+    reg.fit(data, labels)
+    return reg
+
+
+def stacking_classifier(estimators, final_estimator, data, labels, args={}):
+    """
+    Stacking算法：通过多个模型降低bias, 分类
+    """
+    from sklearn.ensemble import StackingClassifier
+    clf = StackingClassifier(estimators=estimators, final_estimator=final_estimator, **args)
+    clf.fit(data, labels)
+    return clf
+
+
+def stacking_regressor(estimators, final_estimator, data, labels, args={}):
+    """
+    Stacking算法：通过多个模型降低bias， 回归
+    """
+    from sklearn.ensemble import StackingRegressor
+    reg = StackingRegressor(estimators=estimators, final_estimator=final_estimator, **args)
+    reg.fit(data, labels)
+    return reg
+
+
 
 
 if __name__ == "__main__":
