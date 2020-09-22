@@ -235,6 +235,25 @@ def stacking_regressor(estimators, final_estimator, data, labels, args={}):
     return reg
 
 
+# --------------------------------DummyClassifier--------------------------------
+def dummy_classifier(X, y, args={}):
+    """
+    用于使用随机预测得到的结果，用于和其他模型进行对比
+    """
+    from sklearn.dummy import DummyClassifier
+    clf = DummyClassifier(**args)
+    clf.fit(X, y)
+    return clf
+
+
+def dummy_regressor(X, y, args={}):
+    """
+    用于使用随机预测得到的结果，用于和其他模型进行对比
+    """
+    from sklearn.dummy import DummyRegressor
+    clf = DummyRegressor(**args)
+    clf.fit(X, y)
+    return clf
 
 
 if __name__ == "__main__":

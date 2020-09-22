@@ -44,3 +44,26 @@ def extra_tree(data, labels, args={}):
 
 
 # ----------------------------- 特征降维，非特征选择--------------------------
+def pca(X, args={}):
+    """
+    PCA主成分分析，得到的降维数据是映射到主成分之后的数据
+    """
+    from sklearn.decomposition import PCA
+    pca_m = PCA(**args)
+    pca_m.fit(X)
+    return pca
+
+
+def lda(X, args={}):
+    """
+    潜在狄利克雷分布
+    """
+    from sklearn.decomposition import LatentDirichletAllocation
+    lda_m = LatentDirichletAllocation(**args)
+    lda_m.fit(X)
+    return lda_m
+
+
+
+
+

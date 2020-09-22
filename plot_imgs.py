@@ -12,5 +12,3 @@ def dt_structure(clf, file_name, args={}):
     graph = pydotplus.graph_from_dot_data(dot_data)
     graph.write_pdf("./result/"+file_name+".pdf")
     print("store decision tree structure to "+file_name+".pdf")
-
-
