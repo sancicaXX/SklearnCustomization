@@ -158,3 +158,19 @@ def r2_score(y_true, y_pred):
     from sklearn.metrics import r2_score
     return r2_score(y_true, y_pred)
 
+
+# -------------------------------------------向量相似度-----------------------------------------
+def pairwise_distances(y1, y2, args={}):
+    """
+    两个向量之间的距离计算
+    """
+    from sklearn.metrics import pairwise_distances
+    return pairwise_distances(y1, y2, **args)
+
+
+def cosine_similarity(y1, y2, args={}):
+    """
+    余弦相似度
+    """
+    from sklearn.metrics.pairwise import cosine_similarity
+    return cosine_similarity(y1, y2, **args)

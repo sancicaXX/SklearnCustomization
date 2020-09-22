@@ -4,6 +4,7 @@
 # @File: utils.py
 # functional description: utils
 
+
 # ------------------------------------------------异常值检测------------------------------------------
 def isolation_forest(X, args={}):
     """
@@ -22,6 +23,37 @@ def local_outlier_factor(X, args={}):
     clf = LocalOutlierFactor(**args)
     clf.fit(X)
     return clf
+
+
+# -----------------------------------------------缺失值填充--------------------------------------------
+def simple_imputer(X, args={}):
+    """
+    缺失值插入：使用固定值、均值、中位数、众数
+    """
+    from sklearn.impute import SimpleImputer
+    imp = SimpleImputer(**args)
+    imp.fit(X)
+    return imp
+
+
+def iterative_imputer(X, args={}):
+    """
+    缺失值插入：通过将该缺失属性与其他属性结合起来进行插值
+    """
+    from sklearn.impute import IterativeImputer
+    iti = IterativeImputer(**args)
+    iti.fit(X)
+    return iti
+
+
+def knn_imputer(X, args={}):
+    """
+    KNN插值法
+    """
+    from sklearn.impute import KNNImputer
+    imp = KNNImputer(**args)
+    imp.fit(X)
+    return imp
 
 
 # ---------------------------------------------概率分布检测----------------------------------------------
@@ -62,5 +94,3 @@ def learning_curve(clf, X, y, train_sizes, cv, args={}):
     from sklearn.model_selection import learning_curve
     train_sizes, train_scores, valid_scores = learning_curve(clf, X, y, train_sizes, cv, **args)
     return train_sizes, train_scores, valid_scores
-
-

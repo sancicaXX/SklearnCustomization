@@ -6,9 +6,28 @@
 
 
 def dt_structure(clf, file_name, args={}):
+    """
+    决策树结构图
+    """
     from sklearn import tree
     import pydotplus
     dot_data = tree.export_graphviz(clf, **args)
     graph = pydotplus.graph_from_dot_data(dot_data)
-    graph.write_pdf("./result/"+file_name+".pdf")
-    print("store decision tree structure to "+file_name+".pdf")
+    graph.write_pdf("./result/" + file_name + ".pdf")
+    print("store decision tree structure to " + file_name + ".pdf")
+
+
+def pdp(clf, X, features, args={}):
+    """
+    返回pdp的数据，然后自行画图
+    """
+    from sklearn.inspection import partial_dependence
+    pdp, axes = partial_dependence(clf, X, features, **args)
+
+
+def plot_pdp(clf, X, features, args={}):
+    """
+    直接画出部分依赖图
+    """
+    from sklearn.inspection import plot_partial_dependence
+    plot_partial_dependence(clf, X, features, **args)
