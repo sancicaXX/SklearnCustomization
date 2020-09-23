@@ -204,6 +204,3 @@ def label_binarizer(y, args={}):
     lbr = LabelBinarizer(**args)
     lbr.fit(y)
     return lbr
-
-
-
