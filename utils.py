@@ -94,3 +94,21 @@ def learning_curve(clf, X, y, train_sizes, cv, args={}):
     from sklearn.model_selection import learning_curve
     train_sizes, train_scores, valid_scores = learning_curve(clf, X, y, train_sizes, cv, **args)
     return train_sizes, train_scores, valid_scores
+
+
+# ----------------------------------------------数据持久化------------------------------
+def dump(obj, name, args={}):
+    """
+    使用joblib将对象保存
+    """
+    import joblib
+    joblib.dump(obj, name, **args)
+
+
+def load(name, args={}):
+    """
+    使用joblib将对象读取
+    """
+    import joblib
+    obj = joblib.load(name, **args)
+    return obj
